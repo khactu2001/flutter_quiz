@@ -19,6 +19,8 @@ class ResultScreen extends StatelessWidget {
     return summaries;
   }
 
+  List<Widget> summaries = [];
+
   @override
   Widget build(context) {
     return SizedBox(
@@ -39,7 +41,9 @@ class ResultScreen extends StatelessWidget {
               height: 30,
               child: Column(),
             ),
-            getSummaries().map((item) => ),
+            getSummaries().map((item) => {
+              return 'haha'
+            }),
             const SizedBox(
               height: 30,
               child: Column(),
