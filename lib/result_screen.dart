@@ -39,7 +39,9 @@ class ResultScreen extends StatelessWidget {
               height: 30,
               child: Column(),
             ),
-            getSummaries().map((item) => ),
+            getSummaries().map((item) => {
+              reuturn 'kaka';
+            }),
             const SizedBox(
               height: 30,
               child: Column(),
