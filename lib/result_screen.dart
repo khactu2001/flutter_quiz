@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_2/data/questions.dart';
+import 'package:flutter_2/question_summary.dart';
 
 class ResultScreen extends StatelessWidget {
   const ResultScreen({super.key, required this.chosenAnswers});
@@ -13,13 +14,13 @@ class ResultScreen extends StatelessWidget {
         'user_answer': chosenAnswers[i],
         'question_index': i,
         'correct_answer': questions[i].answers[0],
+        'question': questions[i].question,
       });
     }
-    print('The value of myNumber is: $summaries');
     return summaries;
   }
 
-  List<Widget> summaries = [];
+  // List<Widget> summaries = [];
 
   @override
   Widget build(context) {
@@ -41,9 +42,9 @@ class ResultScreen extends StatelessWidget {
               height: 30,
               child: Column(),
             ),
-            getSummaries().map((item) => {
-              return 'haha'
-            }),
+            QuestionSummaries(
+              summaries: getSummaries(),
+            ),
             const SizedBox(
               height: 30,
               child: Column(),
