@@ -8,47 +8,72 @@ class QuestionSummaries extends StatelessWidget {
 
   @override
   Widget build(context) {
-    return Column(
-      children: summaries.map((item) {
-        return Row(
-          children: [
-            Text(
-              (((item['question_index']) as int) + 1).toString(),
-              style: TextStyle(
-                backgroundColor: Colors.grey,
-              ),
-            ),
-            Expanded(
-              child: Column(
+    return SizedBox(
+      height: 300,
+      child: SingleChildScrollView(
+        child: Column(
+          children: summaries.map((item) {
+            bool isAnswerCorrect = false;
+            if (item['user_answer'] == item['correct_answer']) {
+              isAnswerCorrect = true;
+            }
+            return Padding(
+              padding: const EdgeInsets.only(bottom: 20),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.baseline,
+                textBaseline: TextBaseline.alphabetic,
                 children: [
-                  Text(
-                    item['question'] as String,
-                    style: TextStyle(
-                      color: Colors.white,
+                  Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      color: isAnswerCorrect ? Colors.white : Colors.red,
+                    ),
+                    width: 20,
+                    height: 20,
+                    margin: const EdgeInsets.only(right: 20),
+                    child: Center(
+                      child: Text(
+                        (((item['question_index']) as int) + 1).toString(),
+                      ),
                     ),
                   ),
-                  const SizedBox(
-                    height: 30,
-                  ),
-                  Text(
-                    item['user_answer'] as String,
-                    style: TextStyle(
-                      color: const Color.fromARGB(143, 255, 255, 255),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          item['question'] as String,
+                          style: const TextStyle(
+                            color: Colors.white,
+                          ),
+                        ),
+                        // const SizedBox(
+                        //   height: 10,
+                        // ),
+                        Text(
+                          item['user_answer'] as String,
+                          style: const TextStyle(
+                            color: Color.fromARGB(143, 255, 255, 255),
+                          ),
+                        ),
+                        // const SizedBox(
+                        //   height: 10,
+                        // ),
+                        Text(
+                          item['correct_answer'] as String,
+                          style: const TextStyle(
+                            color: Colors.white,
+                          ),
+                        ),
+                      ],
                     ),
-                  ),
-                  const SizedBox(
-                    height: 30,
-                  ),
-                  Text(
-                    item['correct_answer'] as String,
-                    style: TextStyle(color: Colors.white),
-                  ),
+                  )
                 ],
               ),
-            )
-          ],
-        );
-      }).toList(),
+            );
+          }).toList(),
+        ),
+      ),
     );
   }
 }

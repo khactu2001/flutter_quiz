@@ -44,7 +44,15 @@ class _QuizState extends State<Quiz> {
     if (activeScreen == 'question-screen') {
       currentScreenWidget = Question(onSelectAnswer: onTapAnswer);
     } else if (activeScreen == 'result-screen') {
-      currentScreenWidget = ResultScreen(chosenAnswers: selectedAnswers);
+      currentScreenWidget = ResultScreen(
+        chosenAnswers: selectedAnswers,
+        restartQuiz: () {
+          setState(() {
+            selectedAnswers = [];
+            activeScreen = 'question-screen';
+          });
+        },
+      );
     }
 
     // currentScreenWidget = ResultScreen();
